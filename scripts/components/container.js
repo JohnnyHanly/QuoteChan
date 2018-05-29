@@ -11,27 +11,52 @@ class Container extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            containerVisible:true,
+            booksVisible:false,
+            funnyVisible:false,
+            thoughtVisible:false,
+            motivationVisible:false
 
         }
     }
   
-
+     toggleHidden(toggle){
+         this.setState({
+             toggle:!toggle
+             
+         })
+     }
 
     render() {
         return (
+            <div>
         
-
                     <Menu>
-                        <a id="Home" className="menu-item" href="/">Home</a>
-                        <a id="Movivational" className="menu-item" href="/">Motivational</a>
+                        <a id="Home" className="menu-item">Home</a>
+                        <a onClick={this.toggleHidden.bind(this.state.motivationHidden)}id="Motivational" className="menu-item" href="/">Motivational</a>
                         <a id="Funny" className="menu-item" href="/">Funny</a>
                         <a id="Books" className="menu-item" href="/">Books/Movies</a>
                         <a id="Thought" className="menu-item" href="/">Thought-Provoking</a>
                     </Menu>
+                    
+                     <div>
+                     {
+                    
 
-               
 
 
+
+                     } 
+                     
+
+
+                        </div>  
+                   
+
+
+            </div>
+            
+            
 
         );
     }

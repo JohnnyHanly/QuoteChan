@@ -3,8 +3,12 @@ import React from 'react';
 class Thought extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            isHidden:true
+         }
     }
+
+
     render() { 
         return ( 
             <div></div>

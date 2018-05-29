@@ -13,7 +13,11 @@
   }
 
   .bm-menu {
-    background: #70727e;
-   
+    background: white;
     
+  }
+  .bm-item-list{
+   color:red;   
+   margin: 20px;
+   
   }

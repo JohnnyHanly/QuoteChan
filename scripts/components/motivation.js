@@ -2,11 +2,13 @@ import React from 'react';
 class Motivation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+        
+         }
     }
     render() { 
         return ( 
-            <div></div>
+            <div>MOTIV</div>
          )
     }
 }
