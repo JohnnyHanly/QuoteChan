@@ -19,5 +19,19 @@
   .bm-item-list{
    color:red;   
    margin: 20px;
+
+
    
+  }
+
+  #input{
+    align-items:  center;
+    align-content: center;
+    width:50%;
+    text-align: center;
+    margin-top: 100px;
+    padding: 50px;
+    color:red;
+   flex-flow: row wrap;
+    justify-content: center;
   }
