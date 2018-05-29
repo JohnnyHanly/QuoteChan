@@ -22,59 +22,67 @@ class Container extends React.Component {
     componentSwitcher(boolean) {
         // console.log(event);
         console.log(boolean);
-        
+
+        this.setState({
+            containerVisible: false,
+            booksVisible: false,
+            funnyVisible: false,
+            thoughtVisible: false,
+            motivationVisible: false
+        })
+
+
         this.setState((prevState) => {
+
             return {
-                
                 [boolean]: !prevState[boolean]
             }
         })
- 
+
     }
- 
-    // flagSwitcher(boolean){
-    //     switch(boolean){
-    //         case motivationVisible:
-    //         return <Motivation />;
-    //         case booksVisible:
-    //         return <Books />;
-    //         case thoughtVisible:
-    //         return <Thought />;
-    //         case funnyVisible:
-    //         return <Funny />;
-    //         default:
-    //         return <Container />
 
-    //     }
-    // }
+    flagSwitcher(boolean) {
+        switch (boolean) {
+            case "motivationVisible":
+                return <Motivation />;
+            case "booksVisible":
+                return <Books />;
+            case "thoughtVisible":
+                return <Thought />;
+            case "funnyVisible":
+                return <Funny />;
+            default:
+                return <Container />
+        }
+    }
 
+    booleanChecker(){
+var newArray=[...this.state];
+  var toDisplay= newArray.filter(this.ifTrue)
+  return toDisplay;
+    }
+    ifTrue(boolean){
+        if(boolean){
+            return boolean;
+        }
+    }
     render() {
         return (
             <div>
 
                 <Menu>
-                    <li onClick={()=>this.componentSwitcher("containerVisible")} id="Home" className="menu-item">Home</li>
-                    <li onClick={()=>this.componentSwitcher("motivationVisible")}  id="Motivational" className="menu-item" href="/">Motivational</li>
-                    <li onClick={()=>this.componentSwitcher("funnyVisible")}  id="Funny" className="menu-item" href="/">Funny</li>
-                    <li onClick={()=>this.componentSwitcher("booksVisible")} id="Books" className="menu-item" href="/">Books/Movies</li>
-                    <li onClick={()=>this.componentSwitcher("thoughtVisible")}  id="Thought" className="menu-item" href="/">Thought-Provoking</li>
+                    <li onClick={() => this.componentSwitcher("containerVisible")} id="Home" className="menu-item">Home</li>
+                    <li onClick={() => this.componentSwitcher("motivationVisible")} id="Motivational" className="menu-item" href="/">Motivational</li>
+                    <li onClick={() => this.componentSwitcher("funnyVisible")} id="Funny" className="menu-item" href="/">Funny</li>
+                    <li onClick={() => this.componentSwitcher("booksVisible")} id="Books" className="menu-item" href="/">Books/Movies</li>
+                    <li onClick={() => this.componentSwitcher("thoughtVisible")} id="Thought" className="menu-item" href="/">Thought-Provoking</li>
                 </Menu>
-
-                {/* in progress
-                {<div>
-                    {(this.booksVisible ? <Books /> :
-                        (this.funnyVisible ? <Funny /> :
-                            (this.thoughtVisible ? <Thought /> :
-                                (this.motivationVisible ? <Motivation /> :
-                                    <Container />
-                                )
-                            )
-                        )
-                    )
+                <div>
+                    {
+                      //  this.flagSwitcher(this.booleanChecker)
+                     
                     }
-
-                </div> } */}
-
+                </div>
             </div>
 
 
