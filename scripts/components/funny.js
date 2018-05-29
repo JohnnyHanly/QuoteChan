@@ -8,7 +8,7 @@ class Funny extends React.Component {
     }
     render() { 
         return ( 
-            <div>FUNNY</div>
+            <div>FUNNY))))))))))))))))))))))))))))))))))))))))))))))))</div>
          )
     }
 }

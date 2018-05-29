@@ -11,7 +11,7 @@ class Thought extends React.Component {
 
     render() { 
         return ( 
-            <div></div>
+            <div>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</div>
          )
     }
 }

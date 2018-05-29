@@ -15,13 +15,12 @@ class Container extends React.Component {
             booksVisible: false,
             funnyVisible: false,
             thoughtVisible: false,
-            motivationVisible: false
+            motivationVisible: false,
+            allPosts:[]
 
         }
     }
     componentSwitcher(boolean) {
-        // console.log(event);
-        console.log(boolean);
 
         this.setState({
             containerVisible: false,
@@ -44,28 +43,35 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation />;
+                return <Motivation />
+
             case "booksVisible":
-                return <Books />;
+                return <Books />
+
             case "thoughtVisible":
-                return <Thought />;
+                return <Thought />
+
             case "funnyVisible":
-                return <Funny />;
+                return <Funny />
+
             default:
-                return <Container />
+                <Container />
+                break;
+
         }
+
     }
 
-    booleanChecker(){
-var newArray=[...this.state];
-  var toDisplay= newArray.filter(this.ifTrue)
-  return toDisplay;
-    }
-    ifTrue(boolean){
-        if(boolean){
-            return boolean;
+    booleanChecker() {
+        for (let key in this.state) {
+            if (this.state[key]) {
+                console.log(key);
+                return key;
+            }
         }
+
     }
+
     render() {
         return (
             <div>
@@ -78,14 +84,19 @@ var newArray=[...this.state];
                     <li onClick={() => this.componentSwitcher("thoughtVisible")} id="Thought" className="menu-item" href="/">Thought-Provoking</li>
                 </Menu>
                 <div>
-                    {
-                      //  this.flagSwitcher(this.booleanChecker)
-                     
-                    }
+                    {this.booleanChecker()}
+                    {this.flagSwitcher(this.booleanChecker())}
+
                 </div>
-            </div>
 
+                <div>
+                {/* <input type="text" id="submit"/> */}
 
+                </div>
+                    
+     
+
+</div>
 
         );
     }
