@@ -3,6 +3,7 @@ import Funny from './funny';
 import Motivation from './motivation';
 import Books from './books';
 import Thought from './thought';
+import Input from './input';
 import { slide as Menu } from 'react-burger-menu'
 
 
@@ -16,6 +17,7 @@ class Container extends React.Component {
             funnyVisible: false,
             thoughtVisible: false,
             motivationVisible: false,
+            userSubmitVisible: false,
             allPosts:[]
 
         }
@@ -27,7 +29,8 @@ class Container extends React.Component {
             booksVisible: false,
             funnyVisible: false,
             thoughtVisible: false,
-            motivationVisible: false
+            motivationVisible: false,
+            userSubmitVisible: false
         })
 
 
@@ -53,6 +56,9 @@ class Container extends React.Component {
 
             case "funnyVisible":
                 return <Funny />
+
+            case "userSubmitVisible":
+            return <Input />
 
             default:
                 <Container />
@@ -82,6 +88,9 @@ class Container extends React.Component {
                     <li onClick={() => this.componentSwitcher("funnyVisible")} id="Funny" className="menu-item" href="/">Funny</li>
                     <li onClick={() => this.componentSwitcher("booksVisible")} id="Books" className="menu-item" href="/">Books/Movies</li>
                     <li onClick={() => this.componentSwitcher("thoughtVisible")} id="Thought" className="menu-item" href="/">Thought-Provoking</li>
+                    <li onClick={() => this.componentSwitcher("userSubmitVisible")} id="Thought" className="menu-item" href="/">Submit Your Own!</li>
+
+                    
                 </Menu>
                 <div>
                     {this.booleanChecker()}
@@ -90,7 +99,7 @@ class Container extends React.Component {
                 </div>
 
                 <div>
-                {/* <input type="text" id="submit"/> */}
+               
 
                 </div>
                     
