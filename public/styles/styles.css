@@ -35,3 +35,7 @@
    flex-flow: row wrap;
     justify-content: center;
   }
+  .buttun {
+    margin-top: 15px;
+    margin-right: 95px;
+  }
