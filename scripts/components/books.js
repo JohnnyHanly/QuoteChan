@@ -9,7 +9,7 @@ class Books extends React.Component {
     }
     render() { 
         return (
-            <div>BOOKOOOOOOOOOOOOOOOOOOOOOOOOOOOO</div>
+            <h1 className="title">BOOKS/MOVIES</h1>
           )
     }
 }

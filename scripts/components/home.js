@@ -7,14 +7,16 @@ class Home extends React.Component {
     render() {
         return (
             <div id="homepage">
-                <h1 id="title"> HOME PAGE </h1>
+                <h1 className="title"> HOME PAGE </h1>
                 <ul>
                     {
                         this.props.masterList.map((x, index) => {
 
                             return (
                                 <div className="border" id="post" key={index}>
-                                    <div className="cold-md-6">{<p>{x.quote}-{x.author}</p>}
+                                    <div className="cold-md-6">{<p>"{x.quote}"- <i>{x.author}</i></p>}
+                                        {<p> Submitted by: {x.username} in {x.category}</p>}
+
                                     </div>
 
                                 </div>

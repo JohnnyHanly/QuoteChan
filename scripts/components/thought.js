@@ -11,7 +11,7 @@ class Thought extends React.Component {
 
     render() { 
         return ( 
-            <div>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</div>
+            <h1 className="title">THOUGHT-PROVOKING </h1>
          )
     }
 }

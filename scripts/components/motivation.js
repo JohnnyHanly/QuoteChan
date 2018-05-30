@@ -8,7 +8,7 @@ class Motivation extends React.Component {
     }
     render() { 
         return ( 
-            <div>MOTIV</div>
+            <h1 className="title"> MOTIVATIONAL </h1>
          )
     }
 }

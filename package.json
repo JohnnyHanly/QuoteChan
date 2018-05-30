@@ -21,6 +21,8 @@
     "react": "^16.2.0",
     "react-burger-menu": "^2.4.4",
     "react-dom": "^16.2.0",
+    "react-native-picker-select": "^3.0.1",
+    "react-simple-dropdown": "^3.2.0",
     "style-loader": "^0.20.2",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9",
