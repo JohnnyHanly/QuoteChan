@@ -47,16 +47,16 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation masterList={this.state.allPosts}/>
+                return <Motivation masterList={this.state.allPosts} />
 
             case "booksVisible":
-                return <Books masterList={this.state.allPosts}/>
+                return <Books masterList={this.state.allPosts} />
 
             case "thoughtVisible":
                 return <Thought masterList={this.state.allPosts} />
 
             case "funnyVisible":
-                return <Funny masterList={this.state.allPosts}/>
+                return <Funny masterList={this.state.allPosts} />
             case "homeVisible":
                 return <Home onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
 
@@ -72,33 +72,61 @@ class Container extends React.Component {
     }
 
     initPosts() {
-        var newArray= [];
+        var newArray = [];
         newArray.push({
             quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
             author: "Mahatma Ghandi",
             username: "jhanly",
             category: "Thought-provoking",
-            votes: 5000,
+            votes: 9001,
         },
             {
                 quote: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
                 author: "Martin Luther King Jr.",
                 username: "evan",
                 category: "Motivational",
-                votes: 4532,
+                votes: 8556,
             },
             {
                 quote: "We're coming for ya globalist!",
                 author: "Alex Jones",
                 username: "jackAttack",
                 category: "Funny",
-                votes: 3442,
+                votes: 8223,
+            },
+            {
+                quote: "Not all those who wander are lost",
+                author: "J. R. R. Tolkien",
+                username: "hobbitluvr4eva",
+                category: "Books/movies",
+                votes: 7242,
+            },
+            {
+                quote: "It's OK to have all of your eggs in one basket as long as you control what happens to that basket",
+                author: "Elon Musk",
+                username: "eMuskFan22",
+                category: "Motivational",
+                votes: 6423,
+            },
+            {
+                quote: "Boom! headshot!",
+                author: "me",
+                username: "Xx420noScopexX",
+                category: "Funny",
+                votes: 4323,
+            },
+            {
+                quote: "Be kind, for everyone you meet is fighting a hard battle.",
+                author: "Plato",
+                username: "plato_not_play_dough",
+                category: "Thought-provoking",
+                votes: 2334,
             }
 
         );
 
         this.setState({
-            allPosts:newArray,
+            allPosts: newArray,
             hasInitialized: false
         })
     }
@@ -129,7 +157,7 @@ class Container extends React.Component {
             allPosts: newArray
         })
     }
-   
+
 
     render() {
         return (
@@ -145,7 +173,7 @@ class Container extends React.Component {
                 </Menu>
 
                 <div>
-                   
+
                     {(this.state.hasInitialized ? this.initPosts() : this.flagSwitcher(this.booleanChecker()))}
                 </div>
             </div>

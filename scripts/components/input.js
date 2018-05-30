@@ -9,15 +9,14 @@ class Input extends React.Component {
             category: "",
             votes: 0,
             dropDownOpen: false,
-            buttonText:"Choose a category"
-            
+            buttonText: "Choose a category"
+
         }
     }
 
 
     addPost() {
         this.props.onAddPost(this.state);
-        window.alert("pressed");
         this.setState({
             quote: "",
             author: "",
@@ -26,13 +25,10 @@ class Input extends React.Component {
         })
     }
 
+    validForms(){
 
-    categoryChooser(categoryString) {
-        this.setState({
-            category: categoryString
-        })
+        
     }
-
 
     render() {
         return (
@@ -53,30 +49,49 @@ class Input extends React.Component {
                             <button className="dropdown-toggle buttun btn btn-primary" type="button" data-toggle="dropdown">
                                 <span className="caret"> </span>{this.state.buttonText}</button>
                             <ul className="dropdown-menu">
-                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Motivational"}); this.setState({ category: "Motivational" }) }}><a href="#"> Motivational</a></li>
+                                <li value={this.state.category} onClick={(event) => { this.setState({ buttonText: "Motivational" }); this.setState({ category: "Motivational" }) }}><a href="#"> Motivational</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Funny"}); this.setState({ category: "Funny" }) }}><a href="#">Funny</a></li>
+                                <li value={this.state.category} onClick={(event) => { this.setState({ buttonText: "Funny" }); this.setState({ category: "Funny" }) }}><a href="#">Funny</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Thought-provoking"}); this.setState({ category: "Thought-provoking" }) }}><a href="#">Thought-Provoking</a></li>
+                                <li value={this.state.category} onClick={(event) => { this.setState({ buttonText: "Thought-provoking" }); this.setState({ category: "Thought-provoking" }) }}><a href="#">Thought-Provoking</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Books/movies"}); this.setState({ category: "Books/movies" }) }}><a href="#">Books/Movies</a></li>
+                                <li value={this.state.category} onClick={(event) => { this.setState({ buttonText: "Books/movies" }); this.setState({ category: "Books/movies" }) }}><a href="#">Books/Movies</a></li>
                                 <li className="divider"></li>
                             </ul>
                         </div>
-                      
-                        <button className='btn btn-dark buttun' onClick={this.addPost.bind(this)}>Submit Your Quote
+
+                        <button className='btn btn-dark buttun' data-toggle="modal" data-target="#submitModal" onClick={this.addPost.bind(this)}>Submit Your Quote
                                     </button>
-                                   
 
+                        <div className="modal fade" id="submitModal" tabIndex="1" role="dialog" aria-lablelledby="modalLable" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="modelLabel"> Quote submitted to:
+                                         {" "+this.state.buttonText}</h5>
+                                        <button className="btn btn-primary btn-success" data-dismiss="modal">
+                                        
+                                         Super!</button>
+
+
+
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div >
+
+
+                    </div>
                 </div>
-
-
             </div>
-       
-            </div >
-           
-                
-
         )
     }
 }

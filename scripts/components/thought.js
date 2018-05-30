@@ -3,22 +3,22 @@ import React from 'react';
 class Thought extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            isHidden:true
-         }
+        this.state = {
+            isHidden: true
+        }
     }
 
 
-    render() { 
+    render() {
         return (
 
-           
+
             <div id="homepage">
                 <h1 className="title"> FUNNY </h1>
                 <ul>
                     {
-                        this.props.masterList.filter(a=> a.category=="Thought-provoking").map((x, index) => {
-                            
+                        this.props.masterList.filter(a => a.category == "Thought-provoking").map((x, index) => {
+
 
                             return (
                                 <div className="border" id="post" key={index}>
@@ -43,5 +43,5 @@ class Thought extends React.Component {
         )
     }
 }
- 
+
 export default Thought;

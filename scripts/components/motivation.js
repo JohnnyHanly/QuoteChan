@@ -2,20 +2,20 @@ import React from 'react';
 class Motivation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-           
-         }
+        this.state = {
+
+        }
     }
-    render() { 
+    render() {
         return (
 
-           
+
             <div id="homepage">
                 <h1 className="title"> Motivational </h1>
                 <ul>
                     {
-                        this.props.masterList.filter(a=> a.category=="Motivational").map((x, index) => {
-                            
+                        this.props.masterList.filter(a => a.category == "Motivational").map((x, index) => {
+
 
                             return (
                                 <div className="border" id="post" key={index}>
@@ -40,5 +40,5 @@ class Motivation extends React.Component {
         )
     }
 }
- 
+
 export default Motivation;

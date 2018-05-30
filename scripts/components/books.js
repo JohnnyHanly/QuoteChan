@@ -3,20 +3,20 @@ import React from 'react';
 class Books extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  
-           
+        this.state = {
+
         }
     }
-    render() { 
+    render() {
         return (
 
-           
+
             <div id="homepage">
                 <h1 className="title"> BOOKS/MOVIES </h1>
                 <ul>
                     {
-                        this.props.masterList.filter(a=> a.category=="Books/movies").map((x, index) => {
-                            
+                        this.props.masterList.filter(a => a.category == "Books/movies").map((x, index) => {
+
 
                             return (
                                 <div className="border" id="post" key={index}>
@@ -41,5 +41,5 @@ class Books extends React.Component {
         )
     }
 }
- 
+
 export default Books;
