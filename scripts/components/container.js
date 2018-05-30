@@ -7,8 +7,6 @@ import Input from './input';
 import Home from './home';
 import { scaleRotate as Menu } from 'react-burger-menu'
 
-
-
 class Container extends React.Component {
     constructor(props) {
         super(props);
@@ -19,8 +17,12 @@ class Container extends React.Component {
             thoughtVisible: false,
             motivationVisible: false,
             userSubmitVisible: false,
-            allPosts: []
-
+            hasInitialized: true,
+            allPosts: [],
+            funnyPosts: [],
+            motivationalPosts: [],
+            thoughtPosts: [],
+            booksPosts: []
         }
     }
     componentSwitcher(boolean) {
@@ -33,8 +35,6 @@ class Container extends React.Component {
             motivationVisible: false,
             userSubmitVisible: false
         })
-
-
         this.setState((prevState) => {
 
             return {
@@ -47,21 +47,21 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation />
+                return <Motivation masterList={this.state.allPosts}/>
 
             case "booksVisible":
-                return <Books />
+                return <Books masterList={this.state.allPosts}/>
 
             case "thoughtVisible":
-                return <Thought />
+                return <Thought masterList={this.state.allPosts} />
 
             case "funnyVisible":
-                return <Funny />
+                return <Funny masterList={this.state.allPosts}/>
             case "homeVisible":
-                return <Home  masterList={this.state.allPosts} />
+                return <Home onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
 
             case "userSubmitVisible":
-                return <Input  onAddPost={this.addPost.bind(this)} />
+                return <Input onAddPost={this.addPost.bind(this)} />
 
             default:
                 <Container />
@@ -70,6 +70,39 @@ class Container extends React.Component {
         }
 
     }
+
+    initPosts() {
+        var newArray= [];
+        newArray.push({
+            quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
+            author: "Mahatma Ghandi",
+            username: "jhanly",
+            category: "Thought-provoking",
+            votes: 5000,
+        },
+            {
+                quote: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
+                author: "Martin Luther King Jr.",
+                username: "evan",
+                category: "Motivational",
+                votes: 4532,
+            },
+            {
+                quote: "We're coming for ya globalist!",
+                author: "Alex Jones",
+                username: "jackAttack",
+                category: "Funny",
+                votes: 3442,
+            }
+
+        );
+
+        this.setState({
+            allPosts:newArray,
+            hasInitialized: false
+        })
+    }
+
 
     booleanChecker() {
         for (let key in this.state) {
@@ -81,26 +114,27 @@ class Container extends React.Component {
 
     }
 
-    addPost(post){
-        var newArray= [...this.state.allPosts];
+    addPost(post) {
+        var newArray = [...this.state.allPosts];
         newArray.push(post);
         this.setState({
-            allPosts:newArray
+            allPosts: newArray
         })
 
     }
-    deletePost(index){
-        var newArray=[...this.state.allPosts];
-        newArray.splice(index,1);
+    deletePost(index) {
+        var newArray = [...this.state.allPosts];
+        newArray.splice(index, 1);
         this.setState({
             allPosts: newArray
         })
     }
+   
 
     render() {
         return (
-            <div id="burgerdiv">
 
+            <div id="burgerdiv">
                 <Menu >
                     <li onClick={() => this.componentSwitcher("homeVisible")} id="Home" className="menu-item clicker">Home</li>
                     <li onClick={() => this.componentSwitcher("motivationVisible")} id="Motivational" className="menu-item clicker" href="/">Motivational</li>
@@ -108,23 +142,12 @@ class Container extends React.Component {
                     <li onClick={() => this.componentSwitcher("booksVisible")} id="Books" className="menu-item clicker" href="/">Books/Movies</li>
                     <li onClick={() => this.componentSwitcher("thoughtVisible")} id="Thought" className="menu-item clicker" href="/">Thought-Provoking</li>
                     <li onClick={() => this.componentSwitcher("userSubmitVisible")} id="Thought" className="menu-item clicker" href="/">Submit Your Own!</li>
-
-
                 </Menu>
-                
+
                 <div>
-                    {this.flagSwitcher(this.booleanChecker())}
-                    { 
-             
-            }
-        
-
-                
-
+                   
+                    {(this.state.hasInitialized ? this.initPosts() : this.flagSwitcher(this.booleanChecker()))}
                 </div>
-
-
-
             </div>
 
         );

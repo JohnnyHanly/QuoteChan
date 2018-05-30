@@ -2,10 +2,26 @@ import React from 'react';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
-    }
+        this.state = {
+            
+            allPosts: this.props.masterList,
+
+            
+
+            }
+        }
+        
+        
+
+        addPost(posts){
+            
+        }
+
+    
     render() {
         return (
+
+           
             <div id="homepage">
                 <h1 className="title"> HOME PAGE </h1>
                 <ul>
@@ -15,7 +31,7 @@ class Home extends React.Component {
                             return (
                                 <div className="border" id="post" key={index}>
                                     <div className="cold-md-6">{<p>"{x.quote}"- <i>{x.author}</i></p>}
-                                        {<p> Submitted by: {x.username} in {x.category}</p>}
+                                        {<p> Submitted by: <em>{x.username} </em>in <strong>{x.category}</strong></p>}
 
                                     </div>
 

@@ -8,7 +8,9 @@ class Input extends React.Component {
             username: "",
             category: "",
             votes: 0,
-            dropDownOpen: false
+            dropDownOpen: false,
+            buttonText:"Choose a category"
+            
         }
     }
 
@@ -49,15 +51,15 @@ class Input extends React.Component {
 
                         <div className="dropdown">
                             <button className="dropdown-toggle buttun btn btn-primary" type="button" data-toggle="dropdown">
-                                <span className="caret"> </span>Choose a Category</button>
+                                <span className="caret"> </span>{this.state.buttonText}</button>
                             <ul className="dropdown-menu">
-                                <li value={this.state.category} onClick={(event) => { this.setState({ category: "motivational" }) }}><a href="#"> Motivational</a></li>
+                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Motivational"}); this.setState({ category: "Motivational" }) }}><a href="#"> Motivational</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => { this.setState({ category: "books/movies" }) }}><a href="#">Funny</a></li>
+                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Funny"}); this.setState({ category: "Funny" }) }}><a href="#">Funny</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => { this.setState({ category: "thought-provoking" }) }}><a href="#">Thought-Provoking</a></li>
+                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Thought-provoking"}); this.setState({ category: "Thought-provoking" }) }}><a href="#">Thought-Provoking</a></li>
                                 <li className="divider"></li>
-                                <li value={this.state.category} onClick={(event) => { this.setState({ category: "funny" }) }}><a href="#">Books/Movies</a></li>
+                                <li value={this.state.category} onClick={(event) => {this.setState({buttonText:"Books/movies"}); this.setState({ category: "Books/movies" }) }}><a href="#">Books/Movies</a></li>
                                 <li className="divider"></li>
                             </ul>
                         </div>
