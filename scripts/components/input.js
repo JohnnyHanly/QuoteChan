@@ -31,11 +31,6 @@ class Input extends React.Component {
         })
     }
 
-    // popoverTop = (
-    //     <Popover id="popover-positioned-top" title="pop">
-    //         <strong> test </strong>
-    //     </Popover>
-    // );
 
     render() {
         return (
@@ -66,10 +61,10 @@ class Input extends React.Component {
                                 <li className="divider"></li>
                             </ul>
                         </div>
-                        {/* <OverlayTrigger trigger="click" placement="top" overlay={popoverTop}>
+                      
                         <button className='btn btn-dark buttun' onClick={this.addPost.bind(this)}>Submit Your Quote
                                     </button>
-                                    </OverlayTrigger> */}
+                                   
 
                 </div>
 
