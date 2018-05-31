@@ -18,11 +18,8 @@ class Container extends React.Component {
             motivationVisible: false,
             userSubmitVisible: false,
             hasInitialized: true,
-            allPosts: [],
-            funnyPosts: [],
-            motivationalPosts: [],
-            thoughtPosts: [],
-            booksPosts: []
+            hasVoted: false,
+            allPosts: []
         }
     }
     componentSwitcher(boolean) {
@@ -47,18 +44,18 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation masterList={this.state.allPosts} />
+                return <Motivation  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "booksVisible":
-                return <Books masterList={this.state.allPosts} />
+                return <Books onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "thoughtVisible":
-                return <Thought masterList={this.state.allPosts} />
+                return <Thought onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "funnyVisible":
-                return <Funny masterList={this.state.allPosts} />
+                return <Funny onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
             case "homeVisible":
-                return <Home onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
+                return <Home onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
 
             case "userSubmitVisible":
                 return <Input onAddPost={this.addPost.bind(this)} />
@@ -79,6 +76,9 @@ class Container extends React.Component {
             username: "jhanly",
             category: "Thought-provoking",
             votes: 9001,
+            hasVoted:false,
+            id: Math.floor((Math.random() * 1000) + 1),
+
         },
             {
                 quote: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
@@ -86,6 +86,8 @@ class Container extends React.Component {
                 username: "evan",
                 category: "Motivational",
                 votes: 8556,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1),
             },
             {
                 quote: "We're coming for ya globalist!",
@@ -93,6 +95,8 @@ class Container extends React.Component {
                 username: "jackAttack",
                 category: "Funny",
                 votes: 8223,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1),
             },
             {
                 quote: "Not all those who wander are lost",
@@ -100,6 +104,8 @@ class Container extends React.Component {
                 username: "hobbitluvr4eva",
                 category: "Books/movies",
                 votes: 7242,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1),
             },
             {
                 quote: "It's OK to have all of your eggs in one basket as long as you control what happens to that basket",
@@ -107,6 +113,8 @@ class Container extends React.Component {
                 username: "eMuskFan22",
                 category: "Motivational",
                 votes: 6423,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1),
             },
             {
                 quote: "Boom! headshot!",
@@ -114,6 +122,8 @@ class Container extends React.Component {
                 username: "Xx420noScopexX",
                 category: "Funny",
                 votes: 4323,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1)
             },
             {
                 quote: "Be kind, for everyone you meet is fighting a hard battle.",
@@ -121,6 +131,8 @@ class Container extends React.Component {
                 username: "plato_not_play_dough",
                 category: "Thought-provoking",
                 votes: 2334,
+                hasVoted:false,
+                id: Math.floor((Math.random() * 1000) + 1)
             }
 
         );
@@ -143,11 +155,14 @@ class Container extends React.Component {
     }
 
     addPost(post) {
+
+        
         var newArray = [...this.state.allPosts];
         newArray.push(post);
-        this.setState({
-            allPosts: newArray
-        })
+        //post.id =
+            this.setState({
+                allPosts: newArray
+            })
 
     }
     deletePost(index) {
@@ -158,6 +173,35 @@ class Container extends React.Component {
         })
     }
 
+
+    upVote(id) {
+
+
+        var newArray = [...this.state.allPosts];
+        var object = newArray.find(x => x.id == id);
+
+        if(!object.hasVoted){
+            object.votes++;
+            object.hasVoted=true; 
+        }
+        this.setState({
+            allPosts: newArray,  
+        })
+    }
+
+    downVote(id) {
+
+        var newArray = [...this.state.allPosts];
+        var object = newArray.find(x => x.id == id);
+        if(object.hasVoted){
+            object.votes--;
+            object.hasVoted=false;
+        }
+        this.setState({
+            allPosts: newArray
+        })
+
+    }
 
     render() {
         return (
