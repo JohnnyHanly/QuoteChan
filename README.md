@@ -24,11 +24,10 @@ install node.js, clone this repo, and run in VCS.
 * [React-Burger-Menu](https://github.com/negomi/react-burger-menu) - Burger Menu
 
 ## Authors
-
- **Johnny Hanly**  [Johnny Hanly](https://github.com/JohnnyHanly)
+  [Johnny Hanly](https://github.com/JohnnyHanly)
 
 ## Acknowledgments
 
 * Thanks to Redwood Code Academy in Santa Ana, California!
-* 
+
 
