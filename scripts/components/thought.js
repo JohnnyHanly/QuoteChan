@@ -29,9 +29,9 @@ class Thought extends React.Component {
                                     <div className="row">
 
                                         <div className="col-10">{<p>"{x.quote}"- <i>{x.author}</i></p>}
-                                            <div>
-                                                {(!this.props.isUser ? (<p> Submitted by: <em>{x.username} </em>in <strong>{x.category}</strong></p>) : (<p> Submitted by: <em> {this.props.globalUser}</em> in <strong>{x.category}</strong></p>))}
-                                            </div>
+                                            
+                                        {<p> Submitted by: <em>{x.username} </em>in <strong>{x.category}</strong></p>}
+                                            
                                         </div>
                                         <div className="col">
                                             <div onClick={this.upVote.bind(this, x.id)} className="arrow-up" id="downvoteButton"></div>

@@ -16,12 +16,12 @@ class Container extends React.Component {
             funnyVisible: false,
             thoughtVisible: false,
             motivationVisible: false,
-            userSubmitVisible:false,
-            username:"",
-            password:"",
+            userSubmitVisible: false,
+            username: "",
+            password: "",
             hasInitialized: true,
-            usernameInput:"",
-            passwordInput:"",
+            usernameInput: "",
+            passwordInput: "",
             globalUser: "Sign in",
             hasAttemptedSignin: false,
             isUser: false,
@@ -55,7 +55,7 @@ class Container extends React.Component {
                 return <Motivation globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "booksVisible":
-                return <Books globalUser={this.state.globalUser}isUser={this.state.isUser}  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Books globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "thoughtVisible":
                 return <Thought globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
@@ -63,7 +63,7 @@ class Container extends React.Component {
             case "funnyVisible":
                 return <Funny globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
             case "homeVisible":
-                return <Home globalUser={this.state.globalUser} isUser={this.state.isUser}  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
+                return <Home globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
 
             case "userSubmitVisible":
                 return <Input globalUser={this.state.globalUser} isUser={this.state.isUser} onAddPost={this.addPost.bind(this)} />
@@ -84,7 +84,7 @@ class Container extends React.Component {
             username: "jhanly",
             category: "Thought-provoking",
             votes: 9001,
-            hasVoted: false,
+            hasVoted: 0,
             id: Math.floor((Math.random() * 10000) + 1),
 
         },
@@ -94,7 +94,7 @@ class Container extends React.Component {
                 username: "evan",
                 category: "Motivational",
                 votes: 8556,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1),
             },
             {
@@ -103,7 +103,7 @@ class Container extends React.Component {
                 username: "jackAttack",
                 category: "Funny",
                 votes: 8223,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1),
             },
             {
@@ -112,7 +112,7 @@ class Container extends React.Component {
                 username: "hobbitluvr4eva",
                 category: "Books/movies",
                 votes: 7242,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1),
             },
             {
@@ -121,7 +121,7 @@ class Container extends React.Component {
                 username: "eMuskFan22",
                 category: "Motivational",
                 votes: 6423,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1),
             },
             {
@@ -130,7 +130,7 @@ class Container extends React.Component {
                 username: "Xx420noScopexX",
                 category: "Funny",
                 votes: 4323,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1)
             },
             {
@@ -139,7 +139,7 @@ class Container extends React.Component {
                 username: "plato_not_play_dough",
                 category: "Thought-provoking",
                 votes: 2334,
-                hasVoted: false,
+                hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1)
             }
 
@@ -184,7 +184,12 @@ class Container extends React.Component {
 
     addPost(post) {
 
-post.id= Math.floor(Math.random() * 10000 + 1);
+        if(this.state.isUser){
+            post.username=this.state.globalUser;
+
+        }
+        post.hasVoted=0;
+        post.id = Math.floor(Math.random() * 10000 + 1);
         var newArray = [...this.state.allPosts];
         newArray.push(post);
         this.setState({
@@ -237,37 +242,37 @@ post.id= Math.floor(Math.random() * 10000 + 1);
         var signedin = false;
 
         for (let key in this.state.userData) {
-            
+
             if (this.state.userData[key].username == user && this.state.userData[key].password == pass) {
-                signedin=true;
+                signedin = true;
             }
 
         }
-        if(signedin){   
+        if (signedin) {
             this.setState({
-               globalUser:user,
-               isUser:true
+                globalUser: user,
+                isUser: true
             })
-        }else{
+        } else {
             this.displayError();
         }
         this.setState({
-            usernameInput:"",
-            passInput:""
+            usernameInput: "",
+            passInput: ""
         })
-        
-    }
-   
 
-displayError(){
+    }
+
+
+    displayError() {
         alert("You have entered invalid credentials. Please try again.");
-}
-    
+    }
+
 
     render() {
         return (
             <div id="burgerdiv">
-                <button type="button" disabled={this.state.isUser} className="btn btn-primary float-right" id="signinButton"data-toggle="modal" data-target="#signinModal">{this.state.globalUser}</button>
+                <button type="button" disabled={this.state.isUser} className="btn btn-primary float-right" id="signinButton" data-toggle="modal" data-target="#signinModal">{this.state.globalUser}</button>
                 <div className="modal fade" id="signinModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -278,7 +283,7 @@ displayError(){
                                         <input type="text" value={this.state.usernameInput} onChange={(event) => { this.setState({ usernameInput: event.target.value }) }} className="form-control" id="userInput"></input>
                                     </div>
                                     <div className="form-group">
-                                        <label  className="col-form-label">Enter your password:</label>
+                                        <label className="col-form-label">Enter your password:</label>
                                         <input type="password" className="form-control" value={this.state.passInput} onChange={(event) => { this.setState({ passwordInput: event.target.value }) }} id="passwordInput"></input>
                                     </div>
                                 </form>
