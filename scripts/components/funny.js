@@ -21,8 +21,8 @@ class Funny extends React.Component {
         return (
 
 
-            <div className="container">
-                <h1 className="title"> FUNNY </h1>
+            <div className="container"id="funnyPage">
+                <h1 className="title"id="funnyTitle"> FUNNY </h1>
                 <ul>
                     {
                         this.props.masterList.filter(a => a.category == "Funny").map((x, index) => {

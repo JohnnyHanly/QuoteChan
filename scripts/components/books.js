@@ -19,8 +19,8 @@ class Books extends React.Component {
         return (
 
 
-            <div className="container">
-                <h1 className="title"> BOOKS/MOVIES </h1>
+            <div className="container"id="booksPage">
+                <h1 className="title" id="booksTitle"> BOOKS/MOVIES </h1>
                 <ul>
                     {
                         this.props.masterList.filter(a => a.category == "Books/movies").map((x, id) => {

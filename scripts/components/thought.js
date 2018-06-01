@@ -19,8 +19,8 @@ class Thought extends React.Component {
         return (
 
 
-            <div className="container">
-                <h1 className="title"> THOUGHT-PROVOKING </h1>
+            <div className="container"id="thoughtPage">
+                <h1 className="title"id="thoughtTitle"> Thought-Provoking</h1>
                 <ul>
                     {
                         this.props.masterList.filter(a => a.category == "Thought-provoking").map((x, index) => {

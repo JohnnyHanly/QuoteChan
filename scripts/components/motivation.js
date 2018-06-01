@@ -17,8 +17,8 @@ class Motivation extends React.Component {
         return (
 
 
-            <div className="container">
-                <h1 className="title"> Motivational </h1>
+            <div className="container"id="motivationPage">
+                <h1 className="title"id="motivationTitle"> Motivational </h1>
                 <ul>
                     {
                         this.props.masterList.filter(a => a.category == "Motivational").map((x, index) => {

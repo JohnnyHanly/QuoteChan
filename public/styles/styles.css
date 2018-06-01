@@ -1,3 +1,14 @@
+*{
+  
+  margin-bottom: 0;
+
+  
+}
+#signinButton{
+margin-top:10px;
+margin-right:10px;  
+}
+
 .bm-burger-bars{
     background-color: black;
     visibility: visible;
@@ -11,12 +22,17 @@
     top: 20px;
   
   }
+ body,html{
+   background: #efe2ba;
+   height:100%;
+   padding:0;
+   margin:0;
 
+}
   .bm-menu {
     background: #96281B;
     scroll-behavior: smooth;
     overflow:auto;
-    
     background-image: url("project1wood2.jpg");
     background-size: 800px;
     
@@ -55,11 +71,47 @@
   margin-bottom:30px;
   width:100%;
   background-color: #efe2ba;
+  font-family: 'Oswald', sans-serif;
+
+ 
   }
+   
+  #booksTitle{
+    font-family: 'Monoton', cursive;
+  }
+  #funnyTitle{
+    font-family: 'Comic Sans',cursive,sans-serif;
+  }
+
+  #motivationTitle{
+    font-family: 'Cormorant', serif;
+
+  }
+   #thoughtTitle{
+    font-family: 'Parisienne', cursive;
+
+   
+
+  } 
+  #motivationPage{
+      
+  }
+  #funnyPage{
+
+  }
+  #thoughtPage{
+
+  }
+  #bookPage{
+    
+  }
+
   .clicker {
     cursor:pointer;
     color:white;
     font-size: 30px;
+    font-family: 'Ubuntu', sans-serif;
+
     margin-top: 25px;
     width:100%;
     margin-left: 5px;
@@ -70,7 +122,7 @@
     text-align: center;
     background-color:rgba(.5,.5,.5,.5) ;
     
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   
    
   }
   .container{
@@ -108,23 +160,22 @@
     margin:30px;
     padding-top: 10px;
     padding-bottom:10px;
-    border:2px solid black;
+    padding-left:10px;
+    padding-right:10px;
+    border:.5px solid gray;
     
   }
   .col{
     margin: auto;
     font-size: 15pt;
+
   }
   .col-10{
     margin:auto;
+    text-align: center;
     
   }
   
   
-  /* h1, h2, h3, h4, h5, h6 {
-    font-family: 'Corben', Georgia, Times, serif !important;
-}
-p, div {
-  font-family: 'Nobile', Helvetica, Arial, sans-serif !important;
-} */
+  
 

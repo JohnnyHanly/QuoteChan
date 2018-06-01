@@ -5,6 +5,7 @@ import Books from './books';
 import Thought from './thought';
 import Input from './input';
 import Home from './home';
+import Signin from './signin';
 import { scaleRotate as Menu } from 'react-burger-menu'
 
 class Container extends React.Component {
@@ -18,8 +19,14 @@ class Container extends React.Component {
             motivationVisible: false,
             userSubmitVisible: false,
             hasInitialized: true,
-            hasVoted: false,
-            allPosts: []
+            usernameInput:"",
+            passwordInput:"",
+            buttonText: "Sign in",
+            hasAttemptedSignin: false,
+            isUser: false,
+            hasVoted: 0,
+            allPosts: [],
+            userData: []
         }
     }
     componentSwitcher(boolean) {
@@ -44,7 +51,7 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Motivation onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "booksVisible":
                 return <Books onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
@@ -68,16 +75,16 @@ class Container extends React.Component {
 
     }
 
-    initPosts() {
-        var newArray = [];
-        newArray.push({
+    initData() {
+        var postArray = [];
+        postArray.push({
             quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
             author: "Mahatma Ghandi",
             username: "jhanly",
             category: "Thought-provoking",
             votes: 9001,
-            hasVoted:false,
-            id: Math.floor((Math.random() * 1000) + 1),
+            hasVoted: false,
+            id: Math.floor((Math.random() * 10000) + 1),
 
         },
             {
@@ -86,8 +93,8 @@ class Container extends React.Component {
                 username: "evan",
                 category: "Motivational",
                 votes: 8556,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1),
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
             {
                 quote: "We're coming for ya globalist!",
@@ -95,8 +102,8 @@ class Container extends React.Component {
                 username: "jackAttack",
                 category: "Funny",
                 votes: 8223,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1),
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
             {
                 quote: "Not all those who wander are lost",
@@ -104,8 +111,8 @@ class Container extends React.Component {
                 username: "hobbitluvr4eva",
                 category: "Books/movies",
                 votes: 7242,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1),
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
             {
                 quote: "It's OK to have all of your eggs in one basket as long as you control what happens to that basket",
@@ -113,8 +120,8 @@ class Container extends React.Component {
                 username: "eMuskFan22",
                 category: "Motivational",
                 votes: 6423,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1),
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
             {
                 quote: "Boom! headshot!",
@@ -122,8 +129,8 @@ class Container extends React.Component {
                 username: "Xx420noScopexX",
                 category: "Funny",
                 votes: 4323,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1)
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1)
             },
             {
                 quote: "Be kind, for everyone you meet is fighting a hard battle.",
@@ -131,14 +138,35 @@ class Container extends React.Component {
                 username: "plato_not_play_dough",
                 category: "Thought-provoking",
                 votes: 2334,
-                hasVoted:false,
-                id: Math.floor((Math.random() * 1000) + 1)
+                hasVoted: false,
+                id: Math.floor((Math.random() * 10000) + 1)
             }
 
         );
+        var userArray = [];
+        userArray.push({
+            username: "jhanly1",
+            password: "password",
+            id: Math.floor(Math.random() * 10000 + 1)
+        },
+            {
+                username: "evanN",
+                password: "wordpass",
+                id: Math.floor(Math.random() * 10000 + 1)
+
+            },
+            {
+                username: "jackAttack",
+                password: "pass",
+                id: Math.floor(Math.random() * 10000 + 1)
+
+            }
+
+        )
 
         this.setState({
-            allPosts: newArray,
+            allPosts: postArray,
+            userData: userArray,
             hasInitialized: false
         })
     }
@@ -156,13 +184,12 @@ class Container extends React.Component {
 
     addPost(post) {
 
-        
+
         var newArray = [...this.state.allPosts];
         newArray.push(post);
-        //post.id =
-            this.setState({
-                allPosts: newArray
-            })
+        this.setState({
+            allPosts: newArray
+        })
 
     }
     deletePost(index) {
@@ -180,12 +207,12 @@ class Container extends React.Component {
         var newArray = [...this.state.allPosts];
         var object = newArray.find(x => x.id == id);
 
-        if(!object.hasVoted){
+        if (object.hasVoted <= 0) {
             object.votes++;
-            object.hasVoted=true; 
+            object.hasVoted++;
         }
         this.setState({
-            allPosts: newArray,  
+            allPosts: newArray,
         })
     }
 
@@ -193,9 +220,9 @@ class Container extends React.Component {
 
         var newArray = [...this.state.allPosts];
         var object = newArray.find(x => x.id == id);
-        if(object.hasVoted){
+        if (object.hasVoted >= 0) {
             object.votes--;
-            object.hasVoted=false;
+            object.hasVoted--;
         }
         this.setState({
             allPosts: newArray
@@ -203,10 +230,80 @@ class Container extends React.Component {
 
     }
 
+    verifyUser() {
+
+        var user = this.state.usernameInput;
+        var pass = this.state.passwordInput;
+        var signedin = false;
+
+        for (let key in this.state.userData) {
+            
+
+
+            if (this.state.userData[key].username == user && this.state.userData[key].password == pass) {
+                signedin = true;
+            }else{
+                signedin=false;
+               
+            }
+
+        }
+        if(signedin){
+            this.setState({
+                isUser: true,
+                username: user,
+                buttonText:user,
+                
+                
+            })
+        }else{
+            alert("You have entered the wrong credentials. Please try again.");
+        }
+        this.setState({
+            usernameInput:"",
+            passInput:""
+        })
+    }
+   
+
+displayError(){
+    var counter= 0;
+    while(counter==0){
+        alert("You have entered invalid credentials. Please try again.");
+        counter++;
+    }
+}
+    
+
     render() {
         return (
-
             <div id="burgerdiv">
+                <button type="button" className="btn btn-primary float-right" id="signinButton"data-toggle="modal" data-target="#signinModal">{this.state.buttonText}</button>
+                <div className="modal fade" id="signinModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <label for="recipient-name" className="col-form-label">Enter your username:</label>
+                                        <input type="text" value={this.state.usernameInput} onChange={(event) => { this.setState({ usernameInput: event.target.value }) }} class="form-control" id="userInput"></input>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Enter your password:</label>
+                                        <input type="password" className="form-control" value={this.state.passInput} onChange={(event) => { this.setState({ passwordInput: event.target.value }) }} id="passwordInput"></input>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button onClick={this.verifyUser.bind(this)}
+                                    type="button" className="btn btn-primary" data-dismiss="modal">Sign in</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <Menu >
                     <li onClick={() => this.componentSwitcher("homeVisible")} id="Home" className="menu-item clicker">Home</li>
                     <li onClick={() => this.componentSwitcher("motivationVisible")} id="Motivational" className="menu-item clicker" href="/">Motivational</li>
@@ -218,13 +315,12 @@ class Container extends React.Component {
 
                 <div>
 
-                    {(this.state.hasInitialized ? this.initPosts() : this.flagSwitcher(this.booleanChecker()))}
+                    {(this.state.hasInitialized ? this.initData() : this.flagSwitcher(this.booleanChecker()))}
                 </div>
             </div>
 
         );
     }
 }
-
 
 export default Container;
