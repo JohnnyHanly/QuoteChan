@@ -34,7 +34,7 @@ margin-right:10px;
     scroll-behavior: smooth;
     overflow:auto;
     background-image: url("project1wood2.jpg");
-    background-size: 800px;
+    background-size: 1400px;
     
   }
   .bm-item-list{
@@ -72,8 +72,6 @@ margin-right:10px;
   width:100%;
   background-color: #efe2ba;
   font-family: 'Oswald', sans-serif;
-
- 
   }
    
   #booksTitle{
@@ -90,28 +88,13 @@ margin-right:10px;
    #thoughtTitle{
     font-family: 'Parisienne', cursive;
 
-   
-
   } 
-  #motivationPage{
-      
-  }
-  #funnyPage{
-
-  }
-  #thoughtPage{
-
-  }
-  #bookPage{
-    
-  }
 
   .clicker {
     cursor:pointer;
     color:white;
     font-size: 30px;
     font-family: 'Ubuntu', sans-serif;
-
     margin-top: 25px;
     width:100%;
     margin-left: 5px;
@@ -120,10 +103,7 @@ margin-right:10px;
      padding-bottom: 18px;
     border: .25px solid whitesmoke;
     text-align: center;
-    background-color:rgba(.5,.5,.5,.5) ;
-    
-   
-   
+    background-color:rgba(225,225,225,.10) ;
   }
   .container{
     text-align: center;
@@ -134,7 +114,6 @@ margin-right:10px;
   .arrow-up {
     width: 0; 
     height: 0; 
-    
       margin-left:auto;
       margin-right:auto;
       margin-top:15px;

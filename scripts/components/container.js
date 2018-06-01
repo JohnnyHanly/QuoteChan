@@ -5,7 +5,6 @@ import Books from './books';
 import Thought from './thought';
 import Input from './input';
 import Home from './home';
-import Signin from './signin';
 import { scaleRotate as Menu } from 'react-burger-menu'
 
 class Container extends React.Component {
@@ -17,11 +16,13 @@ class Container extends React.Component {
             funnyVisible: false,
             thoughtVisible: false,
             motivationVisible: false,
-            userSubmitVisible: false,
+            userSubmitVisible:false,
+            username:"",
+            password:"",
             hasInitialized: true,
             usernameInput:"",
             passwordInput:"",
-            buttonText: "Sign in",
+            globalUser: "Sign in",
             hasAttemptedSignin: false,
             isUser: false,
             hasVoted: 0,
@@ -51,21 +52,21 @@ class Container extends React.Component {
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
-                return <Motivation onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Motivation globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "booksVisible":
-                return <Books onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Books globalUser={this.state.globalUser}isUser={this.state.isUser}  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "thoughtVisible":
-                return <Thought onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Thought globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
 
             case "funnyVisible":
-                return <Funny onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
+                return <Funny globalUser={this.state.globalUser} isUser={this.state.isUser} onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} masterList={this.state.allPosts} />
             case "homeVisible":
-                return <Home onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
+                return <Home globalUser={this.state.globalUser} isUser={this.state.isUser}  onDownVote={this.downVote.bind(this)} onUpVote={this.upVote.bind(this)} onAddPost={this.addPost.bind(this)} masterList={this.state.allPosts} />
 
             case "userSubmitVisible":
-                return <Input onAddPost={this.addPost.bind(this)} />
+                return <Input globalUser={this.state.globalUser} isUser={this.state.isUser} onAddPost={this.addPost.bind(this)} />
 
             default:
                 <Container />
@@ -175,7 +176,6 @@ class Container extends React.Component {
     booleanChecker() {
         for (let key in this.state) {
             if (this.state[key]) {
-                console.log(key);
                 return key;
             }
         }
@@ -184,7 +184,7 @@ class Container extends React.Component {
 
     addPost(post) {
 
-
+post.id= Math.floor(Math.random() * 10000 + 1);
         var newArray = [...this.state.allPosts];
         newArray.push(post);
         this.setState({
@@ -238,58 +238,47 @@ class Container extends React.Component {
 
         for (let key in this.state.userData) {
             
-
-
             if (this.state.userData[key].username == user && this.state.userData[key].password == pass) {
-                signedin = true;
-            }else{
-                signedin=false;
-               
+                signedin=true;
             }
 
         }
-        if(signedin){
+        if(signedin){   
             this.setState({
-                isUser: true,
-                username: user,
-                buttonText:user,
-                
-                
+               globalUser:user,
+               isUser:true
             })
         }else{
-            alert("You have entered the wrong credentials. Please try again.");
+            this.displayError();
         }
         this.setState({
             usernameInput:"",
             passInput:""
         })
+        
     }
    
 
 displayError(){
-    var counter= 0;
-    while(counter==0){
         alert("You have entered invalid credentials. Please try again.");
-        counter++;
-    }
 }
     
 
     render() {
         return (
             <div id="burgerdiv">
-                <button type="button" className="btn btn-primary float-right" id="signinButton"data-toggle="modal" data-target="#signinModal">{this.state.buttonText}</button>
+                <button type="button" disabled={this.state.isUser} className="btn btn-primary float-right" id="signinButton"data-toggle="modal" data-target="#signinModal">{this.state.globalUser}</button>
                 <div className="modal fade" id="signinModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-body">
                                 <form>
                                     <div className="form-group">
-                                        <label for="recipient-name" className="col-form-label">Enter your username:</label>
-                                        <input type="text" value={this.state.usernameInput} onChange={(event) => { this.setState({ usernameInput: event.target.value }) }} class="form-control" id="userInput"></input>
+                                        <label className="col-form-label">Enter your username:</label>
+                                        <input type="text" value={this.state.usernameInput} onChange={(event) => { this.setState({ usernameInput: event.target.value }) }} className="form-control" id="userInput"></input>
                                     </div>
                                     <div className="form-group">
-                                        <label for="message-text" className="col-form-label">Enter your password:</label>
+                                        <label  className="col-form-label">Enter your password:</label>
                                         <input type="password" className="form-control" value={this.state.passInput} onChange={(event) => { this.setState({ passwordInput: event.target.value }) }} id="passwordInput"></input>
                                     </div>
                                 </form>

@@ -10,7 +10,8 @@ class Input extends React.Component {
             votes: 0,
             dropDownOpen: false,
             id: "",
-            buttonText: "Choose a category"
+            buttonText: "Choose a category",
+            
 
         }
     }
@@ -38,9 +39,11 @@ class Input extends React.Component {
                 <input type="text" className='form-control lol' value={this.state.quote} onChange={(event) => { this.setState({ quote: event.target.value }) }} id="submit" />
                 <p>Enter the Author</p>
                 <input type="text" className='form-control' value={this.state.author} onChange={(event) => { this.setState({ author: event.target.value }) }} id="submit" />
-                <p>Enter your Username</p>
-                <input type="text" className='form-control' value={this.state.username} onChange={(event) => { this.setState({ username: event.target.value }) }} id="submit" />
-
+                
+             
+                    {(!this.props.isUser? <p>Enter your Username<input type="text" className='form-control' value={this.state.username} onChange={(event) => { this.setState({ username: event.target.value }) }} id="submit" /></p>: null
+ )}
+          
                 <div className="dropdown">
                     <button className="dropdown-toggle buttun btn btn-primary" type="button" data-toggle="dropdown">
                         <span className="caret"> </span>{this.state.buttonText}</button>
