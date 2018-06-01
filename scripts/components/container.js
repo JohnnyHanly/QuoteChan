@@ -49,6 +49,15 @@ class Container extends React.Component {
 
     }
 
+    booleanChecker() {
+        for (let key in this.state) {
+            if (this.state[key]) {
+                return key;
+            }
+        }
+
+    }
+
     flagSwitcher(boolean) {
         switch (boolean) {
             case "motivationVisible":
@@ -78,16 +87,26 @@ class Container extends React.Component {
 
     initData() {
         var postArray = [];
-        postArray.push({
-            quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
-            author: "Mahatma Ghandi",
-            username: "jhanly",
-            category: "Thought-provoking",
-            votes: 9001,
-            hasVoted: 0,
-            id: Math.floor((Math.random() * 10000) + 1),
+        postArray.push(
+            {
+                quote: "They Don't Think It Be Like It Is, But It Do",
+                author: "Oscar Gamble",
+                username: "OG",
+                category: "Motivational",
+                votes: 9001,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
+            },
+            {
+                quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
+                author: "Mahatma Ghandi",
+                username: "jhanly",
+                category: "Thought-provoking",
+                votes: 8655,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
 
-        },
+            },
             {
                 quote: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
                 author: "Martin Luther King Jr.",
@@ -116,6 +135,15 @@ class Container extends React.Component {
                 id: Math.floor((Math.random() * 10000) + 1),
             },
             {
+                quote: "NOOOOOOOOOO",
+                author: "Darth Vader",
+                username: "dadVader123",
+                category: "Books/movies",
+                votes: 7120,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
+            },
+            {
                 quote: "It's OK to have all of your eggs in one basket as long as you control what happens to that basket",
                 author: "Elon Musk",
                 username: "eMuskFan22",
@@ -123,7 +151,36 @@ class Container extends React.Component {
                 votes: 6423,
                 hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1),
+            }, {
+                quote: "That's what",
+                author: "She Said",
+                username: "Michael Scoot",
+                category: "Funny",
+                votes: 5431,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
+
+            {
+                quote: "Just Do It",
+                author: "Nike",
+                username: "runnerGuy2",
+                category: "Motivational",
+                votes: 5423,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
+            },
+            {
+                quote: "No u",
+                author: "me",
+                username: "me",
+                category: "Funny",
+                votes: 4561,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
+            },
+
+
             {
                 quote: "Boom! headshot!",
                 author: "me",
@@ -132,6 +189,15 @@ class Container extends React.Component {
                 votes: 4323,
                 hasVoted: 0,
                 id: Math.floor((Math.random() * 10000) + 1)
+            },
+            {
+                quote: "That’s just like, your opinion, man",
+                author: "The Dude",
+                username: "BigL432",
+                category: "Books/movies",
+                votes: 3241,
+                hasVoted: 0,
+                id: Math.floor((Math.random() * 10000) + 1),
             },
             {
                 quote: "Be kind, for everyone you meet is fighting a hard battle.",
@@ -173,22 +239,14 @@ class Container extends React.Component {
     }
 
 
-    booleanChecker() {
-        for (let key in this.state) {
-            if (this.state[key]) {
-                return key;
-            }
-        }
-
-    }
 
     addPost(post) {
 
-        if(this.state.isUser){
-            post.username=this.state.globalUser;
+        if (this.state.isUser) {
+            post.username = this.state.globalUser;
 
         }
-        post.hasVoted=0;
+        post.hasVoted = 0;
         post.id = Math.floor(Math.random() * 10000 + 1);
         var newArray = [...this.state.allPosts];
         newArray.push(post);
@@ -197,14 +255,6 @@ class Container extends React.Component {
         })
 
     }
-    deletePost(index) {
-        var newArray = [...this.state.allPosts];
-        newArray.splice(index, 1);
-        this.setState({
-            allPosts: newArray
-        })
-    }
-
 
     upVote(id) {
 
@@ -258,7 +308,7 @@ class Container extends React.Component {
         }
         this.setState({
             usernameInput: "",
-            passInput: ""
+            passwordInput: ""
         })
 
     }
@@ -284,7 +334,7 @@ class Container extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label className="col-form-label">Enter your password:</label>
-                                        <input type="password" className="form-control" value={this.state.passInput} onChange={(event) => { this.setState({ passwordInput: event.target.value }) }} id="passwordInput"></input>
+                                        <input type="password" className="form-control" value={this.state.passwordInput} onChange={(event) => { this.setState({ passwordInput: event.target.value }) }} id="passwordInput"></input>
                                     </div>
                                 </form>
                             </div>

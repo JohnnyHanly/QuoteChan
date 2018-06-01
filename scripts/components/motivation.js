@@ -28,7 +28,8 @@ class Motivation extends React.Component {
                                 <div className="border1" id="post" key={x.id}>
                                     <div className="row">
 
-                                        <div className="col-10">{<p>"{x.quote}"- <i>{x.author}</i></p>}
+                                        <div className="col-10">{<p>"{x.quote}"</p>}
+                                        {<p> - <i>{x.author}</i></p>}
                                             {<p> Submitted by: <em>{x.username} </em>in <strong>{x.category}</strong></p>}
                                         </div>
                                         <div className="col">
