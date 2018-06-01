@@ -23,7 +23,7 @@ class Books extends React.Component {
                 <h1 className="title" id="booksTitle"> BOOKS/MOVIES </h1>
                 <ul>
                     {
-                        this.props.masterList.filter(a => a.category == "Books/movies").map((x, id) => {
+                        this.props.masterList.filter(a => a.category == "Books/movies").map((x) => {
 
 
                             return (

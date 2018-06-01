@@ -23,7 +23,7 @@ class Thought extends React.Component {
                 <h1 className="title" id="thoughtTitle"> Thought-Provoking</h1>
                 <ul>
                     {
-                        this.props.masterList.filter(a => a.category == "Thought-provoking").map((x, index) => {
+                        this.props.masterList.filter(a => a.category == "Thought-provoking").map((x) => {
                             return (
                                 <div className="border1" id="post" key={x.id}>
                                     <div className="row">

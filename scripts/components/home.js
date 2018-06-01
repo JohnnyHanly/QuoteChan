@@ -6,8 +6,6 @@ class Home extends React.Component {
 
             allPosts: this.props.masterList,
 
-
-
         }
     }
 
@@ -31,8 +29,6 @@ class Home extends React.Component {
                         this.props.masterList.map((x, index) => {
 
                             return (
-
-                                
 
                                     <div className="border1" id="post" key={x.id}>
                                     <div className="row">

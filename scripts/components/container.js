@@ -17,8 +17,6 @@ class Container extends React.Component {
             thoughtVisible: false,
             motivationVisible: false,
             userSubmitVisible: false,
-            username: "",
-            password: "",
             hasInitialized: true,
             usernameInput: "",
             passwordInput: "",
