@@ -10,7 +10,6 @@ QuoteChan is a quote rating website where users can submit quotes made others, o
 ![alt text](https://i.imgur.com/kTIxcYP.png "Logo Title Text 1")
 ![alt text](https://i.imgur.com/d1faNdI.png "Logo Title Text 1")
 ![alt text](https://i.imgur.com/NPWKGw5.png "Logo Title Text 1")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ## Getting Started
 
